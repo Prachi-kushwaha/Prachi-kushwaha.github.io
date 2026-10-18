@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Technical articles by Prachi Kushwaha on LLMs, PyTorch, model architectures, and ML systems."
+  >
+
+  <title>Articles | Prachi Kushwaha</title>
+
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #202124;
+      --muted: #707782;
+      --border: #e8e9ed;
+      --accent: #3157d5;
+      --surface: #f7f8fa;
+      --width: 820px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+
+    header {
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .nav-links a.active {
+      color: var(--foreground);
+      font-weight: 650;
+    }
+
+    /* Page introduction */
+
+    .hero {
+      padding: 75px 0 35px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 12px;
+      font-size: clamp(36px, 6vw, 48px);
+      line-height: 1.2;
+      letter-spacing: -1.8px;
+    }
+
+    .intro {
+      max-width: 610px;
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* Filters */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter {
+      padding: 6px 13px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: white;
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .filter:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .filter.active {
+      background: var(--foreground);
+      border-color: var(--foreground);
+      color: white;
+    }
+
+    /* Article list */
+
+    .article-count {
+      padding: 22px 0 5px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .article {
+      padding: 27px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .category {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .article h2 {
+      margin-top: 9px;
+      font-size: 20px;
+      line-height: 1.45;
+      letter-spacing: -0.4px;
+      font-weight: 650;
+    }
+
+    .article h2 a:hover {
+      color: var(--accent);
+    }
+
+    .description {
+      max-width: 700px;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .article-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .read-time {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .read-link {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .read-link:hover {
+      text-decoration: underline;
+    }
+
+    .empty {
+      padding: 40px 0;
+      color: var(--muted);
+      display: none;
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 55px;
+      padding: 25px 0 35px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+        gap: 10px;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+      .article h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="container">
+      <a class="brand" href="index.html">Prachi Kushwaha</a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="opensource.html">Open Source</a>
+        <a href="articles.html" class="active">Articles</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Introduction -->
+    <section class="hero">
+      <p class="eyebrow">Writing & Research</p>
+
+      <h1>Technical Articles</h1>
+
+      <p class="intro">
+        Technical writing on large language models, model architectures,
+        PyTorch implementations, GPU computing, and machine learning systems.
+        These articles document concepts I explore, implement, and learn.
+      </p>
+    </section>
+
+    <!-- Topic filters -->
+    <div class="filters" aria-label="Filter articles by topic">
+      <button class="filter active" data-filter="all">All articles</button>
+      <button class="filter" data-filter="llm">LLMs</button>
+      <button class="filter" data-filter="pytorch">PyTorch</button>
+      <button class="filter" data-filter="systems">GPU & Systems</button>
+      <button class="filter" data-filter="tutorials">Tutorials</button>
+    </div>
+
+    <p class="article-count" id="article-count">
+      Selected articles
+    </p>
+
+    <!-- Article 1 -->
+    <article class="article" data-category="llm">
+      <div class="article-meta">
+        <span class="category">LLM Architecture</span>
+        <span>•</span>
+        <span>DeepSeek-V3</span>
+      </div>
+
+      <h2>
+        <a
+          href="YOUR_ARTICLE_URL_1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Understanding DeepSeek-V3: Architecture and Design
+        </a>
+      </h2>
+
+      <p class="description">
+        An exploration of the architecture behind modern language models,
+        including Mixture of Experts, attention design, and efficient
+        model computation.
+      </p>
+
+      <div class="article-bottom">
+        <span class="read-time">Technical deep dive</span>
+        <a
+          class="read-link"
+          href="YOUR_ARTICLE_URL_1"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read article ↗
+        </a>
+      </div>
+    </article>
+
+    <!-- Article 2 -->
+    <article class="article" data-category="llm">
+      <div class="article-meta">
+        <span class="category">LLM Training</span>
+        <span>•</span>
+        <span>Multi-Token Prediction</span>
+      </div>
+
+      <h2>
+        <a
+          href="YOUR_ARTICLE_URL_2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Multi-Token Prediction in DeepSeek-V3
+        </a>
+      </h2>
+
+      <p class="description">
+        Understanding the MTP training objective, its transformer modules,
+        shared embeddings, projection layers, and contribution to
+        language-model training.
+      </p>
+
+      <div class="article-bottom">
+        <span class="read-time">Architecture & implementation</span>
+        <a
+          class="read-link"
+          href="YOUR_ARTICLE_URL_2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read article ↗
+        </a>
+      </div>
+    </article>
+
+    <!-- Article 3 -->
+    <article class="article" data-category="pytorch">
+      <div class="article-meta">
+        <span class="category">PyTorch</span>
+        <span>•</span>
+        <span>Implementation</span>
+      </div>
+
+      <h2>
+        <a
+          href="YOUR_ARTICLE_URL_3"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Building Transformer Models from Scratch
+        </a>
+      </h2>
+
+      <p class="description">
+        A practical look at transformer components, attention mechanisms,
+        normalization, embeddings, and training a model using PyTorch.
+      </p>
+
+      <div class="article-bottom">
+        <span class="read-time">Implementation guide</span>
+        <a
+          class="read-link"
+          href="YOUR_ARTICLE_URL_3"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read article ↗
+        </a>
+      </div>
+    </article>
+
+    <!-- Article 4 -->
+    <article class="article" data-category="systems">
+      <div class="article-meta">
+        <span class="category">GPU & Systems</span>
+        <span>•</span>
+        <span>Distributed Training</span>
+      </div>
+
+      <h2>
+        <a
+          href="YOUR_ARTICLE_URL_4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Understanding Tensor Parallelism
+        </a>
+      </h2>
+
+      <p class="description">
+        How tensor parallelism distributes linear layers across GPUs,
+        including row-parallel and column-parallel computation
+        and communication between devices.
+      </p>
+
+      <div class="article-bottom">
+        <span class="read-time">Systems engineering</span>
+        <a
+          class="read-link"
+          href="YOUR_ARTICLE_URL_4"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read article ↗
+        </a>
+      </div>
+    </article>
+
+    <!-- Article 5 -->
+    <article class="article" data-category="tutorials">
+      <div class="article-meta">
+        <span class="category">Tutorial</span>
+        <span>•</span>
+        <span>LLM Engineering</span>
+      </div>
+
+      <h2>
+        <a
+          href="YOUR_ARTICLE_URL_5"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          A Practical Guide to LLM Training
+        </a>
+      </h2>
+
+      <p class="description">
+        A hands-on explanation of dataset preparation, tokenization,
+        training configuration, loss tracking, and evaluating
+        language-model experiments.
+      </p>
+
+      <div class="article-bottom">
+        <span class="read-time">Practical guide</span>
+        <a
+          class="read-link"
+          href="YOUR_ARTICLE_URL_5"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read article ↗
+        </a>
+      </div>
+    </article>
+
+    <p class="empty" id="empty-message">
+      No articles in this category yet.
+    </p>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <span>© 2026 Prachi Kushwaha</span>
+
+      <div class="footer-links">
+        <a
+          href="https://github.com/YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://medium.com/@YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Medium
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Category filtering -->
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const articles = document.querySelectorAll(".article");
+    const count = document.getElementById("article-count");
+    const emptyMessage = document.getElementById("empty-message");
+
+    function filterArticles(category) {
+      let visible = 0;
+
+      articles.forEach((article) => {
+        const matches =
+          category === "all" ||
+          article.dataset.category === category;
+
+        article.style.display = matches ? "block" : "none";
+
+        if (matches) visible++;
+      });
+
+      count.textContent =
+        visible + (visible === 1 ? " article" : " articles");
+
+      emptyMessage.style.display = visible === 0 ? "block" : "none";
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        filters.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+
+        filterArticles(button.dataset.filter);
+      });
+    });
+
+    filterArticles("all");
+  </script>
+
+</body>
+</html>
