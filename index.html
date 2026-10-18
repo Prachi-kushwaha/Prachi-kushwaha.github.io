@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Prachi Kushwaha's portfolio — LLM research, Python, PyTorch, model architectures, and open-source engineering."
+  >
+
+  <title>Prachi Kushwaha | Research & Engineering</title>
+
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #202124;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #3157d5;
+      --surface: #f9fafb;
+      --max-width: 850px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    /* Navigation */
+
+    header {
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    /* Introduction */
+
+    .hero {
+      padding: 100px 0 76px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin-top: 18px;
+      max-width: 750px;
+      font-size: clamp(38px, 7vw, 58px);
+      line-height: 1.13;
+      letter-spacing: -2.5px;
+      font-weight: 650;
+    }
+
+    .intro {
+      max-width: 640px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 9px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: border-color 0.2s;
+    }
+
+    .button:hover {
+      border-color: var(--accent);
+    }
+
+    .button-primary {
+      background: var(--foreground);
+      border-color: var(--foreground);
+      color: #ffffff;
+    }
+
+    .button-primary:hover {
+      background: #383838;
+      color: #ffffff;
+      border-color: #383838;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .skill {
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: #555b65;
+      font-size: 12px;
+    }
+
+    /* Content sections */
+
+    section {
+      padding: 38px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      margin-bottom: 8px;
+      font-size: 21px;
+      font-weight: 650;
+      letter-spacing: -0.6px;
+    }
+
+    .section-description {
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .work-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .work-item:last-child {
+      border-bottom: none;
+    }
+
+    .work-title {
+      font-size: 16px;
+      font-weight: 650;
+      letter-spacing: -0.2px;
+    }
+
+    .work-description {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .work-link {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .work-link:hover {
+      text-decoration: underline;
+    }
+
+    .all-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* About */
+
+    .about-text {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 24px;
+      padding: 26px 0 34px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 16px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .hero {
+        padding: 68px 0 50px;
+      }
+
+      h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .intro {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 30px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="container">
+      <a class="logo" href="index.html">Prachi Kushwaha</a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="opensource.html">Open Source</a>
+        <a href="articles.html">Articles</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+      <p class="eyebrow">Research & Engineering</p>
+
+      <h1>
+        Building and understanding
+        intelligent systems.
+      </h1>
+
+      <p class="intro">
+        I'm interested in large language models, efficient model
+        architectures, training systems, and machine learning infrastructure.
+        I use this space to share my implementations, experiments,
+        open-source contributions, and technical writing.
+      </p>
+
+      <div class="actions">
+        <!-- Replace YOUR_USERNAME with your GitHub username -->
+        <a
+          class="button button-primary"
+          href="https://github.com/YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub Profile ↗
+        </a>
+
+        <a class="button" href="projects.html">
+          Explore Projects
+        </a>
+
+        <a class="button" href="articles.html">
+          Read Articles
+        </a>
+      </div>
+
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">PyTorch</span>
+        <span class="skill">LLM Architectures</span>
+        <span class="skill">CUDA</span>
+        <span class="skill">Distributed Training</span>
+        <span class="skill">Model Optimization</span>
+      </div>
+    </div>
+
+    <!-- Featured Projects -->
+    <section id="projects">
+      <h2 class="section-heading">Selected Projects</h2>
+
+      <p class="section-description">
+        Implementations, experiments, and engineering work.
+      </p>
+
+      <article class="work-item">
+        <h3 class="work-title">
+          DeepSeek-V3-Inspired Implementation
+        </h3>
+
+        <p class="work-description">
+          Exploring Mixture of Experts (MoE), Multi-head Latent Attention
+          (MLA), multi-token prediction, and language model training.
+        </p>
+
+        <a
+          class="work-link"
+          href="https://github.com/YOUR_USERNAME/YOUR_MODEL_REPO"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View repository ↗
+        </a>
+      </article>
+
+      <article class="work-item">
+        <h3 class="work-title">Sparsflow</h3>
+
+        <p class="work-description">
+          Add a concise description of your project, the problem it solves,
+          its technical approach, and your experimental results.
+        </p>
+
+        <a
+          class="work-link"
+          href="https://github.com/YOUR_USERNAME/YOUR_SPARSFLOW_REPO"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View repository ↗
+        </a>
+      </article>
+
+      <a class="all-link" href="projects.html">
+        View all projects →
+      </a>
+    </section>
+
+    <!-- Open Source -->
+    <section id="opensource">
+      <h2 class="section-heading">Open Source</h2>
+
+      <p class="section-description">
+        Contributions to machine learning libraries and infrastructure.
+      </p>
+
+      <article class="work-item">
+        <h3 class="work-title">
+          LLM & ML Systems Contributions
+        </h3>
+
+        <p class="work-description">
+          Explore my pull requests, bug fixes, implementation improvements,
+          and technical investigations. Each contribution should link
+          directly to the relevant issue or pull request.
+        </p>
+
+        <a
+          class="work-link"
+          href="https://github.com/YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View GitHub activity ↗
+        </a>
+      </article>
+
+      <a class="all-link" href="opensource.html">
+        View contributions →
+      </a>
+    </section>
+
+    <!-- Writing -->
+    <section id="writing">
+      <h2 class="section-heading">Technical Writing</h2>
+
+      <p class="section-description">
+        Articles and explanations about LLMs, research, and engineering.
+      </p>
+
+      <article class="work-item">
+        <h3 class="work-title">
+          DeepSeek-V3: Architecture and Training
+        </h3>
+
+        <p class="work-description">
+          Replace this description with the actual topic and key takeaway
+          from one of your published articles.
+        </p>
+
+        <a
+          class="work-link"
+          href="https://medium.com/@YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read article ↗
+        </a>
+      </article>
+
+      <article class="work-item">
+        <h3 class="work-title">More Technical Articles</h3>
+
+        <p class="work-description">
+          Browse my writing on attention mechanisms, model architectures,
+          training, and machine learning systems.
+        </p>
+
+        <a
+          class="work-link"
+          href="https://medium.com/@YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Read all articles ↗
+        </a>
+      </article>
+
+      <a class="all-link" href="articles.html">
+        Browse article collection →
+      </a>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2 class="section-heading">About</h2>
+
+      <p class="about-text">
+        My interests include LLM architecture design, efficient training,
+        GPU computing, distributed systems, and open-source machine learning.
+        I enjoy understanding systems from first principles, implementing
+        technical ideas, and investigating performance bottlenecks.
+      </p>
+
+      <div class="actions">
+        <a class="button" href="about.html">
+          More about me
+        </a>
+
+        <!-- Replace with your actual email address -->
+        <a class="button" href="mailto:YOUR_EMAIL">
+          Contact
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <span>© 2026 Prachi Kushwaha</span>
+
+      <div class="footer-links">
+        <a
+          href="https://github.com/YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="https://medium.com/@YOUR_USERNAME"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Medium
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
